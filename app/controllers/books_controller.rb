@@ -4,17 +4,19 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @book = Book.new
     @books = Book.all
+    @book = Book.new
   end
 
   # GET /books/1
   # GET /books/1.json
   def show
+    @book = Book.find(params[:id])
   end
 
   # GET /books/1/edit
   def edit
+    @book = Book.find(params[:id])
   end
 
   # POST /books
@@ -24,6 +26,7 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to @book, notice: 'Book was successfully created.'
     else
+      @books = Book.all
       render :index
     end
   end
@@ -31,8 +34,10 @@ class BooksController < ApplicationController
   # PATCH/PUT /books/1
   # PATCH/PUT /books/1.json
   def update
-    if @book.update()
-      redirect_to @book, notice: 'Book was successfully updated.'
+    if
+      @book.update(book_params)
+      flash[:notice] = 'Book was successfully updated.'
+      redirect_to book_path
     else
       render :edit
     end

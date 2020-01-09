@@ -40,8 +40,24 @@ end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'pry-rails'
+  gem 'pry-byebug'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+end
+group :test do
+  # Adds support for Capybara system testing and selenium driver
+  gem 'capybara', '>= 2.15'
+  gem 'selenium-webdriver'
+  # Easy installation and use of chromedriver to run system tests with Chrome
+  gem 'chromedriver-helper'
+  gem 'rspec-rails'
+  gem "factory_bot_rails"
+  gem 'rspec-parameterized'
+  gem 'faker'
+  gem 'shoulda-matchers'
+  gem 'rails-controller-testing'
+
 end
 
 group :development do
